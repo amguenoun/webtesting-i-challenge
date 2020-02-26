@@ -47,9 +47,58 @@ describe('enhancer.js test', () => {
                 enhancement: 5,
                 durability: 95
             }
-            const newItem = enhancer.repair(item);
+            const newItem = enhancer.succeed(item);
             expect(newItem.name).toBe(item.name);
             expect(newItem.durability).toBe(item.durability);
+        })
+    })
+    describe('fail function', () => {
+        it('If Enhancement is less than 15, durability decreases by 5', () => {
+            const item = {
+                name: "Excalibur",
+                enhancement: 5,
+                durability: 95
+            }
+            const newItem = enhancer.fail(item);
+            expect(newItem.durability).toBe(90);
+        })
+        it('If Enhancement is 15 or more, durability is decreased by 10.', () => {
+            const item = {
+                name: "Excalibur",
+                enhancement: 15,
+                durability: 95
+            }
+            const newItem = enhancer.fail(item);
+            expect(newItem.durability).toBe(85);
+        })
+        it('If Enhancement is greater than 16, Enhancement decreases by 1', () => {
+            const item = {
+                name: "Excalibur",
+                enhancement: 17,
+                durability: 95
+            }
+            const newItem = enhancer.fail(item);
+            expect(newItem.enhancement).toBe(16);
+        })
+    })
+    describe('get function', () => {
+        it('If Enhancement is 0, name is not modified', () => {
+            const item = {
+                name: "Excalibur",
+                enhancement: 0,
+                durability: 95
+            }
+            const newItem = enhancer.get(item);
+            expect(newItem.name).toBe('Excalibur')
+        })
+        it('If Enhancement is greater than 0, return name precluded by [+(ENHANCEMENT)]', () => {
+            const item = {
+                name: "Excalibur",
+                enhancement: 5,
+                durability: 95
+            }
+            const newItem = enhancer.get(item);
+            expect(newItem.name).toBe('[+5] Excalibur')
         })
     })
 })
