@@ -18,8 +18,8 @@ describe('enhancer.js test', () => {
                 durability: 95
             }
             const newItem = enhancer.repair(item);
-            expect(newItem.name).toBe(item.name);
-            expect(newItem.enhancement).toBe(item.enhancement);
+            expect(newItem.name).toBe("Excalibur");
+            expect(newItem.enhancement).toBe(5);
         })
     })
     describe('success function', () => {
@@ -30,7 +30,7 @@ describe('enhancer.js test', () => {
                 durability: 95
             }
             const newItem = enhancer.succeed(item);
-            expect(newItem.enhancement).toBe(item.enhancement + 1);
+            expect(newItem.enhancement).toBe(6);
         })
         it('Enhancement does not go over 20', () => {
             const item = {
@@ -48,8 +48,8 @@ describe('enhancer.js test', () => {
                 durability: 95
             }
             const newItem = enhancer.succeed(item);
-            expect(newItem.name).toBe(item.name);
-            expect(newItem.durability).toBe(item.durability);
+            expect(newItem.name).toBe("Excalibur");
+            expect(newItem.durability).toBe(95);
         })
     })
     describe('fail function', () => {
